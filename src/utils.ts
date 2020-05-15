@@ -16,3 +16,12 @@ export function getModelExample(parameter: BodyParameter) {
 
   return prettifyData(result);
 }
+
+export function validJson(str: string) {
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
+}

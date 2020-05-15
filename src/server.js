@@ -18,7 +18,7 @@ createMiddleware("./petstore.yaml", app, function (err, middleware) {
     middleware.mock()
   );
 
-  app.post("/pet", function (req, res, next) {
+  app.post("v2/pet", function (req, res, next) {
     console.log("YOOOOO", res);
     // Customize the response body
     // res.body = {

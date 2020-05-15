@@ -1,1 +1,1 @@
-export const EDIT_REQUEST_BODY = "Edit request body";
+export const EDIT_REQUEST_BODY = "Edit request ";

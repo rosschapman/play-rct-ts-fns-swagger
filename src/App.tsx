@@ -8,7 +8,7 @@ import { OperationManager, MachineStatus } from "./managers/OperationManager";
 import { OperationViewerLayout } from "./views/OperationViewerLayout";
 import { PathViewer } from "./views/PathViewer";
 import { ResponseViewer } from "./views/ResponseViewer";
-import { ParametersViewer } from "./views/ParametersViewer";
+import { RequestViewer } from "./views/RequestViewer";
 import { OperationControls } from "./views/OperationControls";
 
 type PathManagerState = {
@@ -41,10 +41,6 @@ class PathManager extends React.Component<PathManagerProps, PathManagerState> {
 }
 
 class App extends React.Component<{ spec: Spec }> {
-  handleTryClick() {
-    // turn on interactive mode
-  }
-
   render() {
     const paths = this.props.spec.paths;
 
@@ -89,6 +85,8 @@ class App extends React.Component<{ spec: Spec }> {
 
                         return (
                           <>
+                            <hr></hr>
+                            <h4>Request</h4>
                             <OperationControls
                               operationState={operationState}
                               handleCancelEditClick={handleCancelEditClick}
@@ -96,26 +94,21 @@ class App extends React.Component<{ spec: Spec }> {
                               handleClear={handleClear}
                               handleExecuteRequest={handleExecuteRequest}
                             />
-                            <ParametersViewer
+                            <RequestViewer
                               operation={activePath.operation}
                               state={operationState}
                               handleOnChange={handleOnChange}
                             />
 
-                            <h4>Responses</h4>
+                            <h4>Response</h4>
                             {canShowResponseReviewer ? (
                               <ResponseViewer
                                 data={operationState.data}
                                 requestUrl={requestUrl}
+                                state={operationState}
                               />
                             ) : (
-                              <>
-                                <p>Waiting for request...</p>
-                                <img
-                                  alt="fun gif"
-                                  src="https://media.giphy.com/media/ZXKZWB13D6gFO/giphy.gif"
-                                />
-                              </>
+                              <>Waiting for request...</>
                             )}
                           </>
                         );
@@ -125,10 +118,6 @@ class App extends React.Component<{ spec: Spec }> {
                 ) : (
                   <div>
                     <h5>Waiting for path selection...</h5>
-                    <img
-                      alt="fun gif"
-                      src="https://media.giphy.com/media/Tex62CGWLpOHpctHOS/giphy.gif"
-                    />
                   </div>
                 )}
               </div>
@@ -139,14 +128,6 @@ class App extends React.Component<{ spec: Spec }> {
     );
   }
 }
-/* 
-Example generator: 
-https://github.com/swagger-api/swagger-ui/blob/master/src/core/plugins/samples/fn.js
-
-look how confusing all the boolean handling is in: 
-https://github.com/swagger-api/swagger-ui/blob/0b3489b52dfc3494b8c29201889df2668b07fb53/src/core/components/parameters/parameters.jsx
-
-*/
 
 //==========================================================
 export default App;

@@ -3,7 +3,7 @@ import { MachineStatus } from "../managers/OperationManager";
 import { Operation, Parameter } from "swagger-schema-official";
 import { getModelExample } from "../utils";
 
-export function ParametersViewer({
+export function RequestViewer({
   operation,
   state,
   handleOnChange,
@@ -19,7 +19,7 @@ export function ParametersViewer({
           {operation.parameters.map((parameter: Parameter) => {
             const modelExample = getModelExample(parameter);
             return (
-              <>
+              <div key={`${parameter.in}-${parameter.name}`}>
                 <thead>
                   <td>Name</td>
                   <td>Description</td>
@@ -32,7 +32,10 @@ export function ParametersViewer({
                     }}
                   >
                     <div>
-                      NAME: {parameter.name} {parameter.required ? "*" : ""}
+                      {parameter.name}{" "}
+                      {parameter.required && (
+                        <em style={{ color: "red" }}>* (required)</em>
+                      )}
                     </div>
                     <div>
                       FORMAT:{" "}
@@ -59,7 +62,7 @@ export function ParametersViewer({
                     </fieldset>
                   </td>
                 </tr>
-              </>
+              </div>
             );
           })}
         </table>

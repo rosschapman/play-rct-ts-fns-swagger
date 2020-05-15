@@ -20,6 +20,7 @@ body {
 
 .columns {
   padding: 3em;
+  overflow: auto;
 }
 
 .operation-controls {
@@ -28,6 +29,7 @@ body {
 
 .operation-controls button {
   margin-right: 1em;
+  width: 170px;
 }
 
 .path-viewer button {

@@ -46,5 +46,16 @@ export const OperationControls = ({
     </button>
   );
 
+  if (operationState.status === MachineStatus.WAITING) {
+    result.push(
+      <img
+        alt="fun gif"
+        src="https://media.giphy.com/media/ZXKZWB13D6gFO/giphy.gif"
+        height="50"
+        style={{ position: "relative", top: "-5px" }}
+      />
+    );
+  }
+
   return <div className="operation-controls">{result}</div>;
 };

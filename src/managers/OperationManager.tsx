@@ -1,8 +1,7 @@
 /* eslint-disable no-fallthrough */
 import React from "react";
 import { Spec } from "swagger-schema-official";
-
-// TYPES ================================================================================>
+import { validJson } from "../utils";
 
 export enum MachineStatus {
   IDLE = "IDLE",
@@ -11,8 +10,6 @@ export enum MachineStatus {
   HAS_DATA_EDITING = "HAS_DATA_EDITING",
   HAS_DATA = "HAS_DATA",
 }
-
-//==========================
 
 class Machine {
   transition(event: MachineStatus, state: State, payload?: any): State {
@@ -73,6 +70,12 @@ class Machine {
             status: MachineStatus.HAS_DATA,
           };
         }
+      // TODO in demo?
+      case MachineStatus.HAS_FORM_ERROR:
+        return {
+          ...state,
+          error: "foo",
+        };
       default:
         throw "NOPE";
     }
@@ -118,7 +121,7 @@ export class OperationManager extends React.Component<Props, State> {
   handleExecuteRequest = () => {
     this.dispatch({
       event: MachineStatus.WAITING,
-      op: this.execute,
+      on: this.execute,
     });
   };
   handleClear = () => {
@@ -130,13 +133,19 @@ export class OperationManager extends React.Component<Props, State> {
     }
   };
 
-  execute: Op = async () => {
+  execute: On = async () => {
     const config = this.getRequestConfig();
     const url = config.path;
     const operationName = this.props.activePath.name;
     const headers = {
       "Content-Type": config.consumes,
     };
+
+    // TODO: here's a place for control-flow logic to handle different http methods
+    // if (operationName === 'post') {}
+    // if (operationName === 'get') {}
+    // if (operationName === 'etc...') {}
+
     const fetchOptions = {
       method: operationName,
       headers: headers,
@@ -144,9 +153,16 @@ export class OperationManager extends React.Component<Props, State> {
     };
 
     try {
-      const data = await fetch(url, fetchOptions);
+      // TODO: fake delay for demo
+      const data: globalThis.Response = await new Promise((resolve) => {
+        setTimeout(() => {
+          fetch(url, fetchOptions).then(resolve);
+        }, 2000);
+      });
 
-      if (data.status !== 200) {
+      if (!data.status.toString().startsWith("20")) {
+        // I know what I'm doing
+        // eslint-disable-next-line no-throw-literal
         throw {
           code: data.status,
           body: data.statusText,
@@ -175,11 +191,11 @@ export class OperationManager extends React.Component<Props, State> {
   async dispatch({
     event,
     data,
-    op,
+    on,
   }: {
     event: MachineStatus;
     data?: any;
-    op?: Op;
+    on?: On;
   }) {
     const nextImmediateState = await this.machine.transition(
       event,
@@ -188,17 +204,22 @@ export class OperationManager extends React.Component<Props, State> {
     );
     this.setState(nextImmediateState);
 
-    // Side effect
-    if (op) {
-      const nextPostOpState = await op();
+    // Perform controlled side effects
+    if (on) {
+      const nextPostOpState = await on();
       this.setState(nextPostOpState);
     }
   }
 
   handleOnChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({
-      formData: event.target.value,
-    });
+    if (validJson(event.target.value)) {
+      this.setState({
+        formData: event.target.value,
+      });
+    } else {
+      const msg = "fo";
+      this.machine.transition(MachineStatus.ERROR, msg);
+    }
   };
 
   getStatus() {
@@ -243,4 +264,4 @@ type State = {
   data: any;
 };
 
-type Op = () => Promise<State>;
+type On = () => Promise<State>;

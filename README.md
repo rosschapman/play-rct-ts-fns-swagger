@@ -1,3 +1,38 @@
+# Core focus areas
+
+- State management
+  - FNS
+  - Statechart
+  - I peaked at the swagger-ui code and found the boolean passing and state lexicon to be quite confusing. See: https://github.com/swagger-api/swagger-ui/blob/master/src/core/components/parameters/parameters.jsx#L107
+- Separating effectful from presentational
+- "Heavy" manager and "light" presentational components
+- Typing and state machine to enforce quality(ies)
+
+# Decisions
+
+- Focus on one endpoint
+- Focus on POST example
+- Try doing POST example with individualized fields
+  - Ditch this it's taking too much time away from CFAs
+  - Writing a form parser for nested data is not trivial
+- Manager class for each endpoint
+- RCPs for easy composability in App.tsx
+- Controls factory
+- Use Typescript
+- Use Swagger middleware for mock API
+- Receive config as argument to yarn start
+- Use swagger node parser to generate client JSON config
+- Some inline styling is great for a demo
+- Gifs for fun AND profit
+
+# TIL
+
+- Setting TSC_COMPILE_ON_ERROR to false
+- Swagger Express Middleware
+  - Doesn't always respect config?
+- Remembering that npm scripts don't capture arguments not passed at the end :/
+- This could be useful for generating examples from config: https://github.com/swagger-api/swagger-ui/blob/master/src/core/plugins/samples/fn.js
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
