@@ -35,6 +35,7 @@
   - Doesn't always respect config?
 - Remembering that npm scripts don't capture arguments not passed at the end :/
 - This could be useful for generating examples from config: https://github.com/swagger-api/swagger-ui/blob/master/src/core/plugins/samples/fn.js
+- Swagger CLI tooling
 
 <hr>
 
