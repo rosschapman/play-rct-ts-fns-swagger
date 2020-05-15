@@ -1,38 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%; /* needed to be able to use 100% height in the columns */
+  overflow: hidden;
+}
+
+#root,
 .App {
-  text-align: center;
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.wrapper {
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.columns {
+  padding: 3em;
+}
+
+.operation-controls {
+  display: flex;
+}
+
+.operation-controls button {
+  margin-right: 1em;
+}
+
+.path-viewer button {
+  text-align: left;
+  color: rgb(216, 216, 216);
+}
+
+.path-viewer button:hover {
+  text-align: left;
   color: white;
+  border-color: white;
+}
+textarea {
+  width: 100%;
+}
+textarea:disabled {
+  background: rgb(216, 216, 216);
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button:disabled {
+  background: rgb(216, 216, 216);
+  pointer-events: none;
+  border-color: rgb(216, 216, 216);
 }

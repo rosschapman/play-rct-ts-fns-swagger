@@ -1,14 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import * as swaggerJson from "./swagger.json";
 
+// TODO: Need to research why the wildcard import requires "default" property lookup
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App spec={swaggerJson.default} />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
