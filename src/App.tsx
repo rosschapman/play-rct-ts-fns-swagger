@@ -86,10 +86,7 @@ class App extends React.Component<{ spec: Spec }> {
 
                         return (
                           <>
-                            <DebuggerStatus
-                              process={process}
-                              status={operationState.status}
-                            />
+                            <DebuggerStatus status={operationState.status} />
                             <hr></hr>
                             <h4>Request</h4>
                             <OperationControls
