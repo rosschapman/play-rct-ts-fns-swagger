@@ -1,3 +1,7 @@
+// @ts-nocheck
+/* eslint-disable */
+import React from "react";
+
 function ParameterBodyFormFields({ schema }: { schema: Schema }) {
   if (schema.type === "array") {
     return "TODO";

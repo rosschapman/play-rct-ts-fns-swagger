@@ -6,7 +6,8 @@
   - I peaked at the swagger-ui code and found the boolean passing and state lexicon to be quite confusing. See: https://github.com/swagger-api/swagger-ui/blob/master/src/core/components/parameters/parameters.jsx#L107
 - Separating effectful from presentational
 - "Heavy" manager and "light" presentational components
-- Typing and state machine to enforce quality(ies)
+  - "orchestration" of concerns over separation
+- Typing + state machine to enforce quality(ies)
 
 # Decisions
 
@@ -24,6 +25,8 @@
 - Use swagger node parser to generate client JSON config
 - Some inline styling is great for a demo
 - Gifs for fun AND profit
+- Use "Layout" components
+  - Only managed to sneak in one (OperationViewerLayout)
 
 # TIL
 

@@ -10,6 +10,7 @@ import { PathViewer } from "./views/PathViewer";
 import { ResponseViewer } from "./views/ResponseViewer";
 import { RequestViewer } from "./views/RequestViewer";
 import { OperationControls } from "./views/OperationControls";
+import { DebuggerStatus } from "./views/DebuggerStatus";
 
 type PathManagerState = {
   activePath?: RT.ActivePath;
@@ -57,7 +58,7 @@ class App extends React.Component<{ spec: Spec }> {
                 }}
               >
                 <header>
-                  <h1>PATHS</h1>
+                  <h1>PATH EXPLORER</h1>
                 </header>
                 <PathViewer paths={paths} onPathClick={handlePathClick} />
               </div>
@@ -85,6 +86,10 @@ class App extends React.Component<{ spec: Spec }> {
 
                         return (
                           <>
+                            <DebuggerStatus
+                              process={process}
+                              status={operationState.status}
+                            />
                             <hr></hr>
                             <h4>Request</h4>
                             <OperationControls

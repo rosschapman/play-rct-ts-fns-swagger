@@ -15,7 +15,8 @@ class Machine {
   // TODO: could be useful for top-level tracking of transitions: eg, telemetry,
   // counting entry/exits to manage transitions, ie locking down a signin form after x
   // number of failed attempts.
-  context: {};
+  context = {};
+
   transition(event: MachineStatus, state: State, payload?: any): State {
     const currentStatus = state.status;
 
@@ -221,8 +222,9 @@ export class OperationManager extends React.Component<Props, State> {
         formData: event.target.value,
       });
     } else {
-      const msg = "fo";
-      this.machine.transition(MachineStatus.ERROR, msg);
+      // TODO
+      // const msg = "NOPE";
+      // this.machine.transition(MachineStatus.ERROR, msg);
     }
   };
 

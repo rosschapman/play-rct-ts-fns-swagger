@@ -54,3 +54,13 @@ button:disabled {
   pointer-events: none;
   border-color: rgb(216, 216, 216);
 }
+
+.status-debugger {
+  position: fixed;
+  right: 0;
+  top: 0;
+  padding: 1em;
+  font-size: 0.7em;
+  background: yellow;
+  color: black;
+}
