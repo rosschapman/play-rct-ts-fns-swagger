@@ -4,10 +4,13 @@ export function prettifyData(data: any) {
   return JSON.stringify(data, null, 4);
 }
 
-export function getModelExample(parameter: Parameter) {
-  let result = {};
+export function getModelExample(parameter: BodyParameter) {
+  let result: { [key: string]: string } = {};
 
-  Object.entries(parameter.schema.properties).forEach((value) => {
+  // TODO: Schema definitely should exist on type Parameter
+  Object.entries<{ type: string; format: string }>(
+    parameter.schema.properties
+  ).forEach((value) => {
     result[value[0]] = `<type: ${value[1].type}; format: ${value[1].format}>`;
   });
 
