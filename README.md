@@ -36,6 +36,8 @@
 - Remembering that npm scripts don't capture arguments not passed at the end :/
 - This could be useful for generating examples from config: https://github.com/swagger-api/swagger-ui/blob/master/src/core/plugins/samples/fn.js
 
+<hr>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

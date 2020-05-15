@@ -59,7 +59,7 @@ button:disabled {
   position: fixed;
   right: 0;
   top: 0;
-  padding: 1em;
+  padding: 1em 1em 0;
   font-size: 0.7em;
   background: yellow;
   color: black;

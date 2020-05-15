@@ -94,8 +94,11 @@ paths:
           description: Invalid input
         "400":
           description: Invalid Pet Supplied
-          schema:
-            $ref: "#/definitions/Pet"
+          # TODO: complaining because may be only in 3.0 spec
+          content:
+            application/json:
+              schema:
+                $ref: "#/definitions/Error"
       security:
         - petstore_auth:
             - "write:pets"
@@ -712,6 +715,16 @@ definitions:
         description: User Status
     xml:
       name: User
+  Error:
+    type: object
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    required:
+      - code
+      - message
 externalDocs:
   description: Find out more about Swagger
   url: "http://swagger.io"
