@@ -1,4 +1,4 @@
-# Core focus areas
+# Core focus areas of this messaround
 
 - State management
   - FNS
@@ -9,23 +9,24 @@
   - "orchestration" of concerns over separation
 - Typing + state machine to enforce quality(ies)
 
-# Decisions
+# Decisions along the way
 
+- Try not to peak and copy swagger-ui lib
 - Focus on one endpoint
 - Focus on POST example
 - Try doing POST example with individualized fields
   - Ditch this it's taking too much time away from CFAs
-  - Writing a form parser for nested data is not trivial
-- Manager class for each endpoint
-- RCPs for easy composability in App.tsx
-- Controls factory
-- Use Typescript
+  - Writing a form parser for nested data is not trivial (see graveyard.ts)
+- Each endpoint is warpped in a "manager" class
+- *Render child props* for easy composability in App.tsx
+- Request controls produced by factory (array structure)
+- Use Typescript!
 - Use Swagger middleware for mock API
-- Receive config as argument to yarn start
-- Use swagger node parser to generate client JSON config
-- Some inline styling is great for a demo
-- Gifs for fun AND profit
-- Use "Layout" components
+- Receive config as argument to yarn start (needs separate bash file)
+- Use swagger node parser to generate client JSON config on boot
+- Some inline styling is great for a demo 🤷🏽
+- *Alice In Wonderland* gif for loading (fun and profit)
+- Play with pure "layout" components 
   - Only managed to sneak in one (OperationViewerLayout)
 
 # TIL
