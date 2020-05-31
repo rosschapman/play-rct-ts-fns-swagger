@@ -95,12 +95,6 @@ export class OperationManager extends React.Component<Props, State> {
       code: "",
       body: "",
     },
-    requestConfig: {
-      basePath: "",
-      path: "",
-      consumes: "",
-      produces: "",
-    },
   };
 
   machine = new Machine();
